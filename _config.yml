@@ -4,8 +4,8 @@ SEOTitle: 孟楷坤的博客 | mengkaikun
 header-img: img/home-bg.jpg
 email: 2864078813@qq.com
 description: "这里是 @mkk孟楷坤 的个人博客，与你一起发现更大的世界 | 要做一个有 swag 的程序员"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, React, React Native, 前端, 设计"
-url: "https://huangxuan.me" # your host, for absolute URL
+keyword: "mkk, 孟楷坤,嵌入式"
+url: "https://space.bilibili.com/629233897?spm_id_from=333.1007.0.0" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
@@ -24,7 +24,7 @@ twitter_username: huxpro
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: pretty
-paginate: 10
+paginate: 5
 exclude:
   [
     "less",
