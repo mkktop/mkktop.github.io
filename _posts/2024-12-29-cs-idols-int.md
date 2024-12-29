@@ -1,4 +1,5 @@
 ---
+layout:       post
 title: "我的测试文章"
 subtitle: "「我的测试文章」测试"
 layout: post
