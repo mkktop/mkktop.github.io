@@ -1,7 +1,7 @@
 ---
 layout:       post
 title:        "《我的第一篇博文》"
-author:       "Hux"
+author:       "mkk"
 header-style: text
 catalog:      true
 tags:
