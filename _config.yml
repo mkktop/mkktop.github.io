@@ -14,7 +14,7 @@ future: true
 # SNS settings
 RSS: false
 # weibo_username: mkk
-# zhihu_username: mkk
+zhihu_username: mengkaikun
 github_username: mkktop
 # twitter_username: mkk
 #facebook_username:  huxpro
@@ -92,4 +92,5 @@ page-mathjax: false
 friends:
   [
     { title: "百度一下", href: "http://baidu.com" },
+    { title: "我的B站", href: " https://b23.tv/PhZdzry" },
   ]
