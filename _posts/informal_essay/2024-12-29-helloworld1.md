@@ -1,13 +1,15 @@
 ---
 layout:       post
 title:        "我的图床上线了"
-subtitle:     "一个用来托管图片的网站"
+subtitle:   "用于图片分享的网站"
+date:       2024-12-31 
 author:       "mkk"
 header-style: text
 catalog:      true
 tags:
-    - 杂
+    - 图床
 ---
+
 
 > 日出日落就是一天，花开花谢又是一年。冬至阳生，岁回律转。在这辞旧迎新的美好时刻，我向大家致以新年的祝福！
 
