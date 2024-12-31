@@ -6,7 +6,7 @@ author:       "mkk"
 header-style: text
 catalog:      true
 tags:
-    - 杂谈
+    - 杂
 ---
 
 > 日出日落就是一天，花开花谢又是一年。冬至阳生，岁回律转。在这辞旧迎新的美好时刻，我向大家致以新年的祝福！
