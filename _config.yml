@@ -94,4 +94,5 @@ friends:
     { title: "百度一下", href: "http://baidu.com" },
     { title: "我的B站", href: " https://b23.tv/PhZdzry" },
     { title: "我的图床", href: " https://image.kaikun.top" },
+    { title: "我的AI", href: " https://easy.kaikun.top" },
   ]
