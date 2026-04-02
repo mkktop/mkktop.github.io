@@ -1,0 +1,33 @@
+# -- Goldmark --
+[goldmark]
+[goldmark.extensions]
+  definitionList = true
+  footnote = true
+  linkify = true
+  linkifyProtocols = ["https"]
+  strikethrough = true
+  table = true
+  taskList = true
+  typographer = true
+
+[goldmark.parser]
+  autoHeadingID = true
+  autoHeadingIDType = "github"
+
+[goldmark.renderer]
+  hardWraps = false
+  unsafe = true
+  xhtml = false
+
+# -- Highlight --
+[highlight]
+  style = "dracula"
+  noClasses = false
+  lineNos = true
+  lineNumbersInTable = true
+  tabWidth = 4
+
+# -- Table of Contents --
+[tableOfContents]
+  startLevel = 2
+  endLevel = 4

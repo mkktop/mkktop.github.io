@@ -1,0 +1,591 @@
+<!doctype html><html lang=zh-cn dir=ltr class=scroll-smooth data-default-appearance=dark data-auto-appearance=false><head><meta charset=utf-8><meta http-equiv=content-language content="zh-cn"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=theme-color><title>Linux应用层开发笔记 &#183; mkk Blog</title><meta name=title content="Linux应用层开发笔记 &#183; mkk Blog"><meta name=description content="学习汇总"><meta name=keywords content="笔记,"><link rel=canonical href=https://kaikun.top/posts/note02/><meta name=author content="mkk"><link href=https://github.com/mkktop rel=me><meta property="og:url" content="https://kaikun.top/posts/note02/"><meta property="og:site_name" content="mkk Blog"><meta property="og:title" content="Linux应用层开发笔记"><meta property="og:description" content="学习汇总"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-02T00:00:00+00:00"><meta property="article:modified_time" content="2025-01-02T00:00:00+00:00"><meta property="article:tag" content="笔记"><meta name=twitter:card content="summary"><meta name=twitter:title content="Linux应用层开发笔记"><meta name=twitter:description content="学习汇总"><link type=text/css rel=stylesheet href=/css/main.bundle.min.79e65cd2279ec814bdd2afd76534617d0ccfe74a36529f9b8e3dbf429604e03f552528c44d1f1d8df198765b3545e3ef6f1d3110efef3aee0f8674fcb8f4be2d.css integrity="sha512-eeZc0ieeyBS90q/XZTRhfQzP50o2Up+bjj2/QpYE4D9VJSjETR8djfGYdls1RePvbx0xEO/vOu4PhnT8uPS+LQ=="><script type=text/javascript src=/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js integrity="sha512-b0EXSzoFtoCCD+CMrb+l+3p8o0e3aglVzcaLnYrKHOJPBUfhOM6jO8x5BNVRqQr8scx/LZ/oVXB11QFBkEbAjA=="></script><script src=/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7+kfJ6kKCJxQGC+8wm+Bz9JucDjDTGNew=="></script><script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.6b483bdc9246a18b35259ce2a40e363ade34a01edf2f3a31094f0a396844e75f863d18735a89b85ee8301f2dfdb9e471bdf47c44483d4b8f0d6eb93701873824.js integrity="sha512-a0g73JJGoYs1JZzipA42Ot40oB7fLzoxCU8KOWhE51+GPRhzWom4XugwHy39ueRxvfR8REg9S48Nbrk3AYc4JA==" data-copy=复制 data-copied=已复制></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"Linux应用层开发笔记","headline":"Linux应用层开发笔记","description":"学习汇总","inLanguage":"zh-cn","url":"https://kaikun.top/posts/note02/","author":{"@type":"Person","name":"mkk"},"copyrightYear":"2025","dateCreated":"2025-01-02T00:00:00\u002b00:00","datePublished":"2025-01-02T00:00:00\u002b00:00","dateModified":"2025-01-02T00:00:00\u002b00:00","keywords":["笔记"],"mainEntityOfPage":"true","wordCount":"1727"}]</script></head><body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600" href=#main-content><span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+跳过正文</a></div><div class=min-h-[148px]></div><div class="fixed inset-x-0 z-100"><div id=menu-blur class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl backdrop-saturate-220 backdrop-brightness-112 dark:backdrop-saturate-180 dark:backdrop-brightness-95 bg-primary-200/80 bg-linear-60 dark:bg-primary-800/30 shadow-xl"></div><div class="relative m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32"><div class="main-menu flex items-center w-full gap-2 p-1 pl-0"><a href=/ class="text-base font-medium truncate min-w-0 shrink">mkk Blog</a><div class="flex items-center ms-auto"><div class="hidden md:flex"><nav class="flex items-center gap-x-5 h-12"><a href=/ class="flex items-center bf-icon-color-hover" aria-label=首页 title="mkk Blog"><span class="text-base font-medium break-normal">首页
+</span></a><a href=/posts/ class="flex items-center bf-icon-color-hover" aria-label=文章 title=Posts><span class="text-base font-medium break-normal">文章
+</span></a><a href=/about/ class="flex items-center bf-icon-color-hover" aria-label=关于 title=关于><span class="text-base font-medium break-normal">关于
+</span></a><button id=search-button aria-label=Search class="text-base bf-icon-color-hover" title="搜索 (/)">
+<span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span></button><div class="flex items-center"><button id=appearance-switcher aria-label="Dark mode switcher" type=button class="text-base bf-icon-color-hover"><div class="flex items-center justify-center dark:hidden"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></div><div class="items-center justify-center hidden dark:flex"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></div></button></div></nav></div><div class="flex md:hidden"><div class="flex items-center h-14 gap-4"><button id=search-button-mobile aria-label=Search class="flex items-center justify-center bf-icon-color-hover" title="搜索 (/)">
+<span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span></button>
+<button id=appearance-switcher-mobile type=button aria-label="Dark mode switcher" class="flex items-center justify-center text-neutral-900 hover:text-primary-600 dark:text-neutral-200 dark:hover:text-primary-400"><div class=dark:hidden><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></div><div class="hidden dark:block"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></div></button>
+<input type=checkbox id=mobile-menu-toggle autocomplete=off class="hidden peer">
+<label for=mobile-menu-toggle class="flex items-center justify-center cursor-pointer bf-icon-color-hover"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416c17.7.0 32 14.33 32 32 0 17.7-14.3 32-32 32H32C14.33 128 0 113.7.0 96zM0 256c0-17.7 14.33-32 32-32H416c17.7.0 32 14.3 32 32s-14.3 32-32 32H32c-17.67.0-32-14.3-32-32zM416 448H32c-17.67.0-32-14.3-32-32s14.33-32 32-32H416c17.7.0 32 14.3 32 32s-14.3 32-32 32z"/></svg></span></label><div role=dialog aria-modal=true style=scrollbar-gutter:stable class="fixed inset-0 z-50 invisible overflow-y-auto px-6 py-20 opacity-0 transition-[opacity,visibility] duration-300 peer-checked:visible peer-checked:opacity-100 bg-neutral-50/97 dark:bg-neutral-900/99
+bf-scrollbar"><label for=mobile-menu-toggle class="fixed end-8 top-5 flex items-center justify-center z-50 h-12 w-12 cursor-pointer select-none rounded-full bf-icon-color-hover border bf-border-color bf-border-color-hover bg-neutral-50 dark:bg-neutral-900"><span class="relative block icon"><svg viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg></span></label><nav class="mx-auto max-w-md space-y-6"><div class=px-2><a href=/ aria-label=首页 class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span title="mkk Blog" class="text-2xl font-bold tracking-tight">首页</span></a></div><div class=px-2><a href=/posts/ aria-label=文章 class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span title=Posts class="text-2xl font-bold tracking-tight">文章</span></a></div><div class=px-2><a href=/about/ aria-label=关于 class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span title=关于 class="text-2xl font-bold tracking-tight">关于</span></a></div></nav></div></div></div></div></div></div></div><script type=text/javascript src=/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W+5DcKnbOMMOI+f7IvMGNsVvUfj+ooJ13n6EqqcGEz2FKMVvHLGwWPQ==" data-blur-id=menu-blur></script><div class="relative flex flex-col grow"><main id=main-content class=grow><article><div class="single_hero_background nozoom fixed inset-x-0 top-0 h-[800px]"><div class="from-neutral absolute inset-0 bg-gradient-to-t to-transparent mix-blend-normal dark:from-neutral-800"></div><div class="from-neutral to-neutral absolute inset-0 bg-gradient-to-t opacity-30 mix-blend-normal dark:from-neutral-800 dark:to-neutral-800 dark:opacity-60"></div></div><div id=background-blur class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-xl bg-neutral-100/75 dark:bg-neutral-800/60"></div><script type=text/javascript src=/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W+5DcKnbOMMOI+f7IvMGNsVvUfj+ooJ13n6EqqcGEz2FKMVvHLGwWPQ==" data-blur-id=background-blur data-image-id=background-image-main></script><header id=single_header class="mt-5 max-w-prose"><ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden"><li class=hidden><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/>mkk Blog</a><span class="px-1 text-primary-500">/</span></li><li class=inline><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/posts/>Posts</a><span class="px-1 text-primary-500">/</span></li><li class=hidden><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/posts/note02/>Linux应用层开发笔记</a><span class="px-1 text-primary-500">/</span></li></ol><h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Linux应用层开发笔记</h1><div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden"><div class="flex flex-row flex-wrap items-center"><time datetime=2025-01-02T00:00:00+00:00>January 2, 2025</time><span class="px-2 text-primary-500">&#183;</span><span>1727 字</span><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>9 分钟</span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/tags/%E7%AC%94%E8%AE%B0/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">笔记</span></span></a></div></div><div class="flex author"><img class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4" width=96 height=96 alt=mkk src=/logoko_15949278944379725910_hu_f868ca30b03c3599.png data-zoom-src=/logoko_15949278944379725910_hu_49df6abf487ea5f2.png><div class=place-self-center><div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">作者</div><div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">mkk</div><div class="text-sm text-neutral-700 dark:text-neutral-400">嵌入式开发</div><div class="text-2xl sm:text-lg"><div class="flex flex-wrap text-neutral-400 dark:text-neutral-500 space-x-2"><a class="hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/mkktop target=_blank aria-label=Github title=Github rel="me noopener noreferrer"><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></span></a></div></div></div></div><div class=mb-5></div></header><section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row"><div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs"><div class="toc ps-5 print:hidden lg:sticky lg:top-[140px]"><details open id=TOCView class="toc-right mt-0 overflow-y-auto overscroll-contain bf-scrollbar rounded-lg -ms-5 ps-5 pe-2 hidden lg:block"><summary class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">目录</summary><div class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600"><nav id=TableOfContents><ul><li><a href=#gccglibc和gnu-c的关系>GCC、glibc和GNU C的关系</a></li><li><a href=#三者的关系>三者的关系</a></li><li><a href=#c语言编译过程>C语言编译过程</a><ul><li><a href=#预处理命令>预处理命令</a></li><li><a href=#编译>编译</a></li><li><a href=#汇编>汇编</a></li><li><a href=#链接>链接</a></li></ul></li><li><a href=#make基础>Make基础</a><ul><li><a href=#引入变量>引入变量</a></li><li><a href=#引入伪目标>引入伪目标</a></li><li><a href=#忽略错误>忽略错误</a></li><li><a href=#目标名和命令中输出文件名的关系>目标名和命令中输出文件名的关系</a></li></ul></li></ul><ul><li><a href=#标准io库函数>标准I/O库函数</a><ul><li><a href=#打开关闭文件>打开/关闭文件</a></li><li><a href=#向文件中写入数据>向文件中写入数据</a></li></ul></li></ul></nav></div></details><details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden"><summary class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">目录</summary><div class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600"><nav id=TableOfContents><ul><li><a href=#gccglibc和gnu-c的关系>GCC、glibc和GNU C的关系</a></li><li><a href=#三者的关系>三者的关系</a></li><li><a href=#c语言编译过程>C语言编译过程</a><ul><li><a href=#预处理命令>预处理命令</a></li><li><a href=#编译>编译</a></li><li><a href=#汇编>汇编</a></li><li><a href=#链接>链接</a></li></ul></li><li><a href=#make基础>Make基础</a><ul><li><a href=#引入变量>引入变量</a></li><li><a href=#引入伪目标>引入伪目标</a></li><li><a href=#忽略错误>忽略错误</a></li><li><a href=#目标名和命令中输出文件名的关系>目标名和命令中输出文件名的关系</a></li></ul></li></ul><ul><li><a href=#标准io库函数>标准I/O库函数</a><ul><li><a href=#打开关闭文件>打开/关闭文件</a></li><li><a href=#向文件中写入数据>向文件中写入数据</a></li></ul></li></ul></nav></div></details></div></div><div class="min-w-0 min-h-0 max-w-fit"><div class="article-content max-w-prose mb-20"><h1 class="relative group">Linux下的C语言开发<div id=linux下的c语言开发 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#linux%e4%b8%8b%e7%9a%84c%e8%af%ad%e8%a8%80%e5%bc%80%e5%8f%91 aria-label=锚点>#</a></span></h1><h2 class="relative group">GCC、glibc和GNU C的关系<div id=gccglibc和gnu-c的关系 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#gccglibc%e5%92%8cgnu-c%e7%9a%84%e5%85%b3%e7%b3%bb aria-label=锚点>#</a></span></h2><p>GCC全称GNU Compiler Collection，是GNU项目的一部分，主要是一套编译器工具集，支持多种编程语言，包括C、C++、Objective-C、Fortran、Ada、Go和D等。GCC最初作为GNU操作系统的官方编译器，用于编译GNU/Linux系统和应用程序。它是自由软件，遵循GNU GPL（GNU General Public License）开源协议发布。<br>GCC的主要作用是将源代码编译成机器语言，生成可执行文件或库文件。它也提供了一些优化选项，可以在编译过程中优化代码，提高程序运行的效率。</p><p>glibc，全称GNU C Library，是GNU项目的一部分，是C语言标准库的一个实现版本，为C语言提供了标准的API，包括输入输出处理、字符串操作、内存管理等。glibc是Linux系统上最常用的C标准库实现之一，它实现了C标准规定的所有标准库函数以及POSIX（可移植操作系统接口）的扩展。<br>glibc对于Linux系统和基于Linux的应用程序至关重要，因为它提供了与操作系统交互的基本接口和运行时环境。应用程序通过调用glibc提供的函数来执行文件操作、内存管理、进程控制等操作。</p><p>GNU C通常指的是GNU项目的C语言编程标准，特别是在GCC中实现的C语言的扩展和特性。GNU C包括ANSI C（现在通常指C89或C90）的所有特性，以及对C99、C11等更现代C标准的支持和一些GNU特有的扩展。</p><h2 class="relative group">三者的关系<div id=三者的关系 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e4%b8%89%e8%80%85%e7%9a%84%e5%85%b3%e7%b3%bb aria-label=锚点>#</a></span></h2><p>GCC使用glibc作为其C语言程序的标准库。当GCC编译C语言程序时，程序中使用的标准库函数（如printf或malloc）是通过glibc提供的。<br>GNU C是GCC中实现的C语言的一个版本，包含了对C语言标准的支持以及GNU特有的扩展。这些扩展可以在使用GCC编译程序时通过特定的编译选项启用。<br>总的来说，GCC是编译器，负责将源代码转换为可执行的机器代码；glibc是运行时库，提供程序运行所需的标准函数和操作系统服务的接口；而GNU C则定义了GCC支持的C语言的标准和扩展。<br>这三者共同构成了GNU/Linux系统下开发和运行C语言程序的基础。</p><h2 class="relative group">C语言编译过程<div id=c语言编译过程 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#c%e8%af%ad%e8%a8%80%e7%bc%96%e8%af%91%e8%bf%87%e7%a8%8b aria-label=锚点>#</a></span></h2><h3 class="relative group">预处理命令<div id=预处理命令 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e9%a2%84%e5%a4%84%e7%90%86%e5%91%bd%e4%bb%a4 aria-label=锚点>#</a></span></h3><p>在C语言编译过程中，预处理是其中的第一个阶段，它的主要目的是处理源代码文件中的预处理指令，将它们转换成编译器可以识别的形式。预处理主要包含宏替换、文件包含、条件编译、注释移除等几种任务。预处理的输出通常是经过预处理后的源代码文件，它会被保存成一个临时文件，并作为编译器的输入。预处理器处理后的文件通常会比原始源文件大，因为它会展开宏和包含其他文件的内容。<br>用下面的命令对两个源文件进行预处理：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -E hello.c -o hello.i
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -E main.c -o main.i</span></span></code></pre></td></tr></table></div></div></div><ul><li>-E（大写）：Expand（展开）的缩写，指定gcc执行预处理。</li><li>.i：intermediate（中间的）的缩写，预处理后的源文件通常以.i作为后缀。</li><li>注意：-o不能省略</li></ul><p>得到的hello.i和main.i就是预处理之后的文件。</p><p>.i文件内容解读<br>与处理后的.i文件包含了经过C预处理器处理的源代码及行控制指令等内容。<br>此处对行控制指令做简要介绍。<br>.i文件中以#开头的是预处理器插入的行控制指令，用于标示从下一行起的代码来源，格式大致为</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>\# 行号 &#34;文件名&#34; 标志</span></span></code></pre></td></tr></table></div></div></div><p>行号和文件名表示从下一行开始的源代码来源于哪个文件的哪一行。<br>标志可以是数字1,2,3,4，每个数字的含义如下：</p><ol><li>表示接下来的内容开始于一个新的文件。</li><li>表示控制权从被包含的文件返回。这用于当预处理器完成一个包含文件的读取，回到包含它的文件继续处理时。</li><li>指示接下来的内容来自系统头文件。</li><li>表明接下来的内容应被视为被extern &ldquo;C"包围，这主要用于C++中，以指示C链接约定。extern C是C++中的关键字组合，我们不必关注。</li></ol><p>行号为0通常是预处理器的一种特殊标记用法，并不指向源代码中的实际行号。它可能用于初始化或特殊标记，比如标识文件的开始，而不直接对应于源代码中的行。我们只需要知道.i文件是将源码中宏定义处理之后的源文件，其它内容了解即可。</p><h3 class="relative group">编译<div id=编译 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e7%bc%96%e8%af%91 aria-label=锚点>#</a></span></h3><p>编译阶段，编译器会将经过预处理的源代码文件转换成汇编代码。在这个阶段，编译器会将源代码翻译成机器能够理解的中间代码，包括词法分析、语法分析、语义分析和优化等过程。编译器会检查代码的语法和语义，生成对应的汇编代码。编译阶段是整个编译过程中最复杂和耗时的阶段之一，它对源代码进行了深入的分析和转换，确保了程序的正确性和性能。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>执行下面的命令对刚生成的预处理文件进行编译生成汇编代码：
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -S hello.i -o hello.s
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -S main.i -o main.s
+</span></span><span class=line><span class=cl>也可以对c文件直接进行编译生成汇编代码
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -S hello.c -o hello.s
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -S main.c -o main.s</span></span></code></pre></td></tr></table></div></div></div><ol><li>-S（大写）：Source（源代码）的缩写， 用来生成汇编源代码。</li><li>.s：Assembly Source（汇编源码）的缩写，通常编译后的汇编文件以.s作为后缀。</li></ol><h3 class="relative group">汇编<div id=汇编 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e6%b1%87%e7%bc%96 aria-label=锚点>#</a></span></h3><p>汇编阶段是C语言编译过程中的重要阶段，它将汇编代码转换成目标机器的机器语言代码，也就是目标代码。这个阶段由汇编器（Assembler）完成，其主要任务是将汇编指令翻译成目标机器的二进制形式。主要包含以下几个任务：符号解析、指令翻译、地址关联、重定位、代码优化。最终，汇编器会将翻译和处理后的目标代码输出到目标文件中，用于后续的链接和生成可执行程序或共享库文件。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>执行下面的指令对刚刚生成的汇编文件进行汇编生成机器码：
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -c main.s -o main.o
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -c hello.s -o hello.o
+</span></span><span class=line><span class=cl>也可以直接对C文件进行汇编生成机器码，汇编时-o可以省略，默认就是同名.o文件
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -c main.c hello.c</span></span></code></pre></td></tr></table></div></div></div><ol><li>-c（小写）：Compile （汇编生成机器代码）的缩写，该参数可以指定gcc将汇编代码翻译为机器码，但不做链接。此外，该参数也可以用于将.c文件直接处理为机器码，同样不做链接。</li><li>.o：Object的缩写，通常汇编得到的机器码文件以.o为后缀。</li></ol><p>这次生成的文件已经是二进制文件了，我们不能用文本编辑器直接查看该文件。可以用下面的指令查看main.o文件中所有包含数据的节（section）：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ objdump -s main.o
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main.o：     文件格式 elf64-x86-64-64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Contents of section .text:
+</span></span><span class=line><span class=cl> 0000 f30f1efa 554889e5 b8000000 00e80000  ....UH..........
+</span></span><span class=line><span class=cl> 0010 0000b800 0000005d c3                 .......].
+</span></span><span class=line><span class=cl>Contents of section .comment:
+</span></span><span class=line><span class=cl> 0000 00474343 3a202855 62756e74 75203131  .GCC: (Ubuntu 11
+</span></span><span class=line><span class=cl> 0010 2e342e30 2d317562 756e7475 317e3232  .4.0-1ubuntu1~22
+</span></span><span class=line><span class=cl> 0020 2e303429 2031312e 342e3000           .04) 11.4.0.
+</span></span><span class=line><span class=cl>Contents of section .note.gnu.property:
+</span></span><span class=line><span class=cl> 0000 04000000 10000000 05000000 474e5500  ............GNU.
+</span></span><span class=line><span class=cl> 0010 020000c0 04000000 03000000 00000000  ................
+</span></span><span class=line><span class=cl>Contents of section .eh_frame:
+</span></span><span class=line><span class=cl> 0000 14000000 00000000 017a5200 01781001  .........zR..x..
+</span></span><span class=line><span class=cl> 0010 1b0c0708 90010000 1c000000 1c000000  ................
+</span></span><span class=line><span class=cl> 0020 00000000 19000000 00450e10 8602430d  .........E....C.
+</span></span><span class=line><span class=cl> 0030 06500c07 08000000                    .P......</span></span></code></pre></td></tr></table></div></div></div><p>文件大致可以分为五个部分：</p><ol><li>文件格式</li></ol><p>最上面的行标明了文件的格式为：elf64-x86-64-64，为x86-64架构设计的64位ELF文件格式。ELF英文全称为Executable and Linkable Format，即可执行链接格式，了解即可。<br>2. .text节</p><p>从Contents of section .text开始到下一个Contents之间的属于.text节。这部分包含了程序的机器代码或指令，是程序实际执行的代码。</p><p>①列之间是以空格分隔的，左侧第一列为四位16进制数，用于表示当前行的地址偏移量，上述文件中，.text节第一列第一行为0x0000，表示这一行的地址偏移量是从0开始的，第一列第二行为0x0010，表示这一行的偏移量是从十进制的16开始的。</p><p>②从第二至第五列共4列均为16进制数表示的机器码，一行写满，刚好占用16个字节，因此，第一行的地址从0开始，第二行从16开始。可以看到，main函数源码处理之后得到的机器码共占用了25个字节的空间。</p><p>③第六列即最后一列是机器码的ASCII码表示，和②中的16进制表示相对应。对于ASCII码无法表示的字符，全部用.表示，对于.text节，这部分是无意义的，因为机器码的意义和作用与ASCII码表示无关。</p><ol start=3><li>.comment节</li></ol><p>从Contents of section .comment至下一个Contents之间的属于.comment节。这部分包含编译器版本的信息，用于记录编译这个文件的环境。<br>这一节及后续两节的列布局与.text相同，即第一列为地址偏移量，最后一列为机器码的ASCII码表示，其余列为机器码的16进制表示，不再赘述。<br>本节记录的信息可以从ASCII码表示部分读取：编译器版本为GCC：（Ubuntu 11.4.0-1ubuntu1~22.04）11.4.0。</p><ol start=4><li><p>.note.gnu.property节<br>从Contents of section .note.gnu.property到下一个Contents之间的部分属于.note.gnu.property节。通常包含了一些GNU特定的属性。这部分内容与.text节相同，无法通过ASCII码解读。了解即可。</p></li><li><p>.eh_frame节<br>从Contents of section .eh_frame到下一个Contents之间的部分属于.eh_frame节。包含了用于异常处理的元数据，如每个函数的堆栈信息，可用于异常处理和调试。同样无法通过ASCII码解读。</p></li></ol><p>可以执行下面的指令对main.o内容进行反汇编：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ objdump -d main.o
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main.o：     文件格式 elf64-x86-64-64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Disassembly of section .text:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>0000000000000000 &lt;main&gt;:
+</span></span><span class=line><span class=cl>   0:   f3 0f 1e fa             endbr64
+</span></span><span class=line><span class=cl>   4:   55                      push   %rbp
+</span></span><span class=line><span class=cl>   5:   48 89 e5                mov    %rsp,%rbp
+</span></span><span class=line><span class=cl>   8:   b8 00 00 00 00          mov    $0x0,%eax
+</span></span><span class=line><span class=cl>   d:   e8 00 00 00 00          call   12 &lt;main+0x12&gt;
+</span></span><span class=line><span class=cl>  12:   b8 00 00 00 00          mov    $0x0,%eax
+</span></span><span class=line><span class=cl>  17:   5d                      pop    %rbp
+</span></span><span class=line><span class=cl>  18:   c3                      ret</span></span></code></pre></td></tr></table></div></div></div><p>反汇编内容保留了objdump -s main.o看到的前两节内容，主要是将.text节的内容反汇编为汇编代码。从000000..（若干0） main：下一行起的内容均为汇编代码。同样地，汇编代码可以按照空格分隔，第一列为地址偏移量，第二列至第六列共5列为汇编指令对应的机器码，从第七列开始的均为汇编指令。</p><h3 class="relative group">链接<div id=链接 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e9%93%be%e6%8e%a5 aria-label=锚点>#</a></span></h3><p>链接阶段，由链接器完成。链接器将各个目标文件以及可能用到的库文件进行链接，生成最终的可执行程序。在这个阶段，链接器会解析目标文件中的符号引用，并将它们与符号定义进行匹配，以解决符号的地址关联问题。链接器还会处理全局变量的定义和声明，解决重定位问题，最终生成可执行文件或共享库文件。</p><p>我们在say_hello()函数中调用了printf()函数，这个函数是在stdio.h中声明的，后者来源于glibc库，printf()的实现在glibc的二进制组件中，通常是在共享库（如libc.so）或静态库（如libc.a）文件中。因此，我们除了要链接main.o、hello.o，还需要和glibc库的文件链接。通常，C语言的链接共有三种方式：静态链接、动态链接和混合链接。三者的区别就在于链接器在链接过程中对程序中库函数调用的解析。</p><ol><li>静态链接
+将所有目标文件和所需的库在编译时一并打包进最终的可执行文件。库的代码被复制到最终的可执行文件中，使得可执行文件变得自包含，不需要在运行时查找或加载外部库。</li></ol><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -static main.o hello.o -o main</span></span></code></pre></td></tr></table></div></div></div><p>-static：该参数指示编译器进行静态链接，而不是默认的动态链接。使用这个参数，GCC会尝试将所有用到的库函数直接链接到最终生成的可执行文件中，包括C标准库（libc）、数学库（libm）和其他任何通过代码引用的外部库。</p><ol start=2><li>动态链接<br>库在运行时被加载，可执行文件包含了需要加载的库的路径和符号信息。动态链接的可执行文件比静态链接的小，因为它们共享系统级的库代码。与静态链接不同，库代码不包含在可执行文件中。</li></ol><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc main.o hello.o -o main2</span></span></code></pre></td></tr></table></div></div></div><p>没有添加-static关键字，gcc默认执行动态链接，即glibc库文件没有包含到可执行文件中。</p><p>我们也可以将自己编写的部分代码处理为动态库。<br>执行下面的指令将hello.o编译为动态链接库libhello.so。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc -fPIC -shared hello.o -o libhello.so</span></span></code></pre></td></tr></table></div></div></div><p>-fPIC：这个选项告诉编译器为“位置无关代码（Position Independent Code）”生成输出。在创建共享库时使用这个选项是非常重要的，因为它允许共享库被加载到内存中的任何位置，而不影响其执行。这是因为位置无关代码使用相对地址而非绝对地址进行数据访问和函数调用，使得库在被不同程序加载时能够灵活地映射到不同的地址空间。</p><p>-shared：这个选项指示GCC生成一个共享库而不是一个可执行文件。共享库可以被多个程序同时使用，节省了内存和磁盘空间。</p><p>-o libhello.so：这部分指定了输出文件的名称。-o选项后面跟着的是输出文件的名字，这里命名为libhello.so。按照惯例，Linux下的共享库名称以lib开头，扩展名为.so（表示共享对象）。</p><p>hello.o：这是命令的输入文件，即之前编译生成的目标文件。在这个例子中，GCC会将hello.o中的代码和数据打包进最终的共享库libhello.so中。<br>上述命令的作用是：使用GCC，采用位置无关代码的方式，从hello.o目标文件创建一个名为libhello.so的动态共享库文件。</p><p>编译完成后查看刚刚编译的动态链接库：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ ll
+</span></span><span class=line><span class=cl>总计 80
+</span></span><span class=line><span class=cl>drwxrwxr-x  3 atguigu atguigu  4096  3月 27 20:38 ./
+</span></span><span class=line><span class=cl>drwxr-x--- 23 atguigu atguigu  4096  3月 27 19:12 ../
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    91  3月 27 15:17 hello.c
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    68  3月 27 15:17 hello.h
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu 18009  3月 27 17:27 hello.i
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu  1496  3月 27 17:27 hello.o
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   680  3月 27 17:27 hello.s
+</span></span><span class=line><span class=cl>-rwxrwxr-x  1 atguigu atguigu 15576  3月 27 20:23 libhello.so*
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    67  3月 27 15:17 main.c
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   225  3月 27 15:18 main.i
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu  1360  3月 27 15:18 main.o
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   589  3月 27 15:18 main.s
+</span></span><span class=line><span class=cl>drwxrwxr-x  2 atguigu atguigu  4096  3月 27 14:24 .vscode/</span></span></code></pre></td></tr></table></div></div></div><p>使用动态链接库编译新的可执行文件：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ gcc main.o -L ./ -lhello -o main_d</span></span></code></pre></td></tr></table></div></div></div><p>-L ./：指定了库文件搜索路径。-L选项告诉链接器在哪些目录下查找库文件，./表示当前目录。这意味着在链接过程中，链接器将会在当前目录下搜索指定的库文件。</p><p>-lhello：指定了要链接的库。-l选项后面跟库的名称，这里是hello。根据约定，链接器会搜索名为libhello.so（动态库）或libhello.a（静态库）的文件来链接。链接器会根据-L选项指定的路径列表查找这个库。</p><p>当前目录下只有libhello.so而没有libhello.a，因此，这条命令的最终效果是动态链接当前目录下的libhello.so库以及默认的glibc库，生成可执行文件main_d。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>这时如果我们直接执行main_d文件，会收到以下报错：
+</span></span><span class=line><span class=cl>linux_app/1_C/02_compile$ ./main_d
+</span></span><span class=line><span class=cl>./main_d: error while loading shared libraries: libhello.so: cannot open shared object file: No such file or directory</span></span></code></pre></td></tr></table></div></div></div><p>这句报错的意思时main_d在执行过程中，没有找到动态链接库文件libhello.so文件，链接失败无法执行。Linux的默认动态链接库文件夹是/lib 和/usr/lib，而我们的libhello.so不在其中，所以我们需要在执行的时候指明额外的动态链接库文件夹.</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/02_compile$ LD_LIBRARY_PATH=/home/zxf/桌面/linux_app/1_C/02_compile ./main_d
+</span></span><span class=line><span class=cl>Hello world!</span></span></code></pre></td></tr></table></div></div></div><p>glibc的动态库和静态库分别位于/usr/lib/x86_64-linux-gnu/目录下的libc.so和libc.a文件中。</p><h2 class="relative group">Make基础<div id=make基础 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#make%e5%9f%ba%e7%a1%80 aria-label=锚点>#</a></span></h2><p>Make是一个自动化构建工具，用于从源代码到构建程序、运行和删除文件等操作。它需要我们提供一个名为Makefile的文本文件。它通常包含了一系列规则，这些规则描述了如何根据源代码文件生成可执行文件或者其他目标文件。Makefile的核心概念是规则和依赖关系，规则定义了如何生成一个或多个目标文件，而依赖关系则指定了生成目标文件所需要的源文件或其他依赖文件。下面我们通过一步一步编写Makefile来学习Makefile规则。<br>build-essential: 常用的软件包集合，它包含了编译和构建软件所需的基本开发工具和库文件，如：GCC、Make、。。。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ sudo apt install -y build-essential</span></span></code></pre></td></tr></table></div></div></div><p>（1）编写Makefile</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ touch Makefile</span></span></code></pre></td></tr></table></div></div></div><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl># Makefile内容通常由以下部分组成
+</span></span><span class=line><span class=cl># &lt;目标&gt;: &lt;前置依赖&gt;
+</span></span><span class=line><span class=cl>#     &lt;需要执行的命令&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 放在第一个的是默认目标
+</span></span><span class=line><span class=cl># main目标依赖main.o和hello.o文件
+</span></span><span class=line><span class=cl># 编译的命令: gcc hello.o main.o -o main
+</span></span><span class=line><span class=cl>main: hello.o main.o
+</span></span><span class=line><span class=cl>gcc main.o hello.o -o main 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># main.o目标依赖main.c hello.h
+</span></span><span class=line><span class=cl># 编译命令：gcc -c main.c
+</span></span><span class=line><span class=cl>main.o: main.c hello.h
+</span></span><span class=line><span class=cl>gcc -c main.c -o main.o
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># hello.o目标依赖hello.c hello.h
+</span></span><span class=line><span class=cl># 编译命令：gcc -c hello.c
+</span></span><span class=line><span class=cl>hello.o: hello.c
+</span></span><span class=line><span class=cl>gcc -c hello.c -o hello.o
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># clean目标不依赖任何文件
+</span></span><span class=line><span class=cl># 作用：清理编译的临时文件
+</span></span><span class=line><span class=cl>clean:
+</span></span><span class=line><span class=cl>    rm main main.o hello.o</span></span></code></pre></td></tr></table></div></div></div><p>(2)文件内容解读<br>规则是Makefile的构建单元，Make工具通过解析这些规则来执行构建过程。<br>① 规则的基本结构<br>我们用空行将Makefile的不同规则划分开来。规则有两行构成，第一行为目标和前置依赖，二者通过冒号区分开来，目标在前，前置依赖在后。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl># &lt;目标&gt;: &lt;前置依赖&gt;
+</span></span><span class=line><span class=cl>#     &lt;需要执行的命令&gt;</span></span></code></pre></td></tr></table></div></div></div><p>② 目标：本条规则需要生成的目标文件名。<br>③ 前置依赖：生成目标文件需要的依赖文件列表。<br>④ 命令：一系列将被Shell执行的命令，用于从前置依赖构建目标。<br>注意：Makefile中每个规则的命令必须以一个制表符（tab）开始，而不能是空格。否则会提示“缺失分隔符”。<br>⑤ 上文提到，gcc的-c参数不仅可以将汇编代码转换为机器码，还可以直接将C语言源文件转换为机器码，gcc -c main.c就是第二种用法，这里省略了-o main.o。默认情况下，在指定-c参数时，gcc会将与源文件名去掉扩展名再加上后缀.o作为目标文件的名称。</p><p>执行make命令：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ make 
+</span></span><span class=line><span class=cl>make: &#34;main&#34;已是最新。</span></span></code></pre></td></tr></table></div></div></div><p>提示我们“main”已是最新，这是因为上面的操作已经生成了最终的可执行文件“main”，要看到make的作用，需要先将之前编译好的文件删除</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ rm main.o hello.o main</span></span></code></pre></td></tr></table></div></div></div><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>重新执行make
+</span></span><span class=line><span class=cl>atguigu@ubuntu:~/helloworld$ make
+</span></span><span class=line><span class=cl>gcc -c hello.c
+</span></span><span class=line><span class=cl>gcc -c main.c
+</span></span><span class=line><span class=cl>gcc -o main hello.o main.o</span></span></code></pre></td></tr></table></div></div></div><p>可以看到make首先将hello.c转换为hello.o，然后将main.c转换为main.o，最后生成main可执行文件。<br>③ 同理，执行make clean可以执行clean目标：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>同理，执行make clean可以执行clean目标：
+</span></span><span class=line><span class=cl>linux_app/1_C/03_makefile$ make clean
+</span></span><span class=line><span class=cl>rm -f main main.o hello.o</span></span></code></pre></td></tr></table></div></div></div><p>这个目标我们定义了如何清理编译的残留文件和结果。执行这个目标后，我们的编译结果和临时文件就都被清理了。<br>这就是Makefile，可以批处理进行一键编译，大大提高了编译效率。</p><h3 class="relative group">引入变量<div id=引入变量 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%bc%95%e5%85%a5%e5%8f%98%e9%87%8f aria-label=锚点>#</a></span></h3><p>Makefile中为了方便，可以引入临时变量：</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl># 定义变量
+</span></span><span class=line><span class=cl># objects := hello.o main.o
+</span></span><span class=line><span class=cl>objects := hello.o \
+</span></span><span class=line><span class=cl>    main.o
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 在目标中引入变量
+</span></span><span class=line><span class=cl>main: $(objects)
+</span></span><span class=line><span class=cl>gcc $(objects) -o main
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>main.o: main.c hello.h
+</span></span><span class=line><span class=cl>gcc -c main.c
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>hello.o: hello.c
+</span></span><span class=line><span class=cl>gcc -c hello.c
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># clean目标中也可以引入变量
+</span></span><span class=line><span class=cl>clean:
+</span></span><span class=line><span class=cl>    rm main $(objects)</span></span></code></pre></td></tr></table></div></div></div><ol><li>objects为变量名</li><li>:=的组合相当于C语言中的=，表示赋值，:=后面为变量的值</li><li>+=的组合为以空格拼接右边的值</li><li>\为续行符，表示命令或定义延续到下一行。此处的作用是将hello.o和main.o合并为一行，此处的定义等价于objects := hello.o main.o。</li><li>$(变量名)表示获取变量的值</li></ol><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>依赖文件的作用
+</span></span><span class=line><span class=cl>要注意的是，不指定依赖文件也可以正确执行，但是当没有显式声明的依赖文件发生更改时Make无法追踪。
+</span></span><span class=line><span class=cl>① 删除main.o目标中的hello.h依赖, 第一次执行目标生成目标文件
+</span></span><span class=line><span class=cl>main.o: main.c
+</span></span><span class=line><span class=cl>    gcc -c main.c
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>linux_app/1_C/03_makefile$ make main.o 
+</span></span><span class=line><span class=cl>gcc -c main.c -o main.o
+</span></span><span class=line><span class=cl>② 更改hello.h，在其中任意位置加入空行
+</span></span><span class=line><span class=cl>③ 重新执行
+</span></span><span class=line><span class=cl>linux_app/1_C/03_makefile$ make main.o
+</span></span><span class=line><span class=cl>make: “main.o”已是最新。
+</span></span><span class=line><span class=cl>此时Make工具没有检测到hello.h的更新。
+</span></span><span class=line><span class=cl>④ 将Makefile恢复为以下内容。
+</span></span><span class=line><span class=cl>main.o: main.c hello.h
+</span></span><span class=line><span class=cl>    gcc -c main.c
+</span></span><span class=line><span class=cl>⑤ 执行make
+</span></span><span class=line><span class=cl>linux_app/1_C/03_makefile$ make main.o
+</span></span><span class=line><span class=cl>make: “main.o”已是最新。
+</span></span><span class=line><span class=cl>⑥ 更改hello.h，删除任意空行
+</span></span><span class=line><span class=cl>⑦ 重新执行
+</span></span><span class=line><span class=cl>linux_app/1_C/03_makefile$ make main.o
+</span></span><span class=line><span class=cl>gcc -o main hello.o main.o
+</span></span><span class=line><span class=cl>⑧ 总结：只有在Makefile中显式声明依赖的头文件才会被追踪，当它们发生更改时，重新执行make命令，会再次执行相应规则的命令。</span></span></code></pre></td></tr></table></div></div></div><h3 class="relative group">引入伪目标<div id=引入伪目标 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%bc%95%e5%85%a5%e4%bc%aa%e7%9b%ae%e6%a0%87 aria-label=锚点>#</a></span></h3><p>（1）伪目标<br>伪目标并不代表实际的文件名，它们更多的是行为或动作的标识符。伪目标并不生成具体文件。<br>（2）.PHONY目标<br>① .PHONY是Makefile中一个特殊的目标，用于声明其它目标是伪目标。<br>② 语法：.PHONY: 伪目标名称<br>③ 细心的同学可能发现，目标为clean的规则没有前置依赖，这是因为它是用来执行清理操作的，并不是要生成名为clean的文件，因此不需要前置依赖。我们可以将clean声明为伪目标。<br>④ 修改Makefile，如下。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl># 声明伪目标
+</span></span><span class=line><span class=cl>.PHONY: clean
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># clean目标中也可以引入变量
+</span></span><span class=line><span class=cl>clean:
+</span></span><span class=line><span class=cl>    rm main $(objects)</span></span></code></pre></td></tr></table></div></div></div><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ make clean
+</span></span><span class=line><span class=cl>rm main hello.o main.o</span></span></code></pre></td></tr></table></div></div></div><p>（3）为什么需要声明伪目标<br>我们看到，将clean声明为伪目标后执行make clean的结果与之前并无二致。那么声明伪目标的意义何在？<br>执行以下操作。<br>① 在helloworld目录下创建名为clean的文件</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ touch clean
+</span></span><span class=line><span class=cl>linux_app/1_C/03_makefile$ ll
+</span></span><span class=line><span class=cl>总计 96
+</span></span><span class=line><span class=cl>drwxrwxr-x  3 atguigu atguigu  4096  3月 28 15:24 ./
+</span></span><span class=line><span class=cl>drwxr-x--- 23 atguigu atguigu  4096  3月 28 15:00 ../
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu     0  3月 28 15:24 clean
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    92  3月 28 14:45 hello.c
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    69  3月 28 14:45 hello.h
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu 18009  3月 27 17:27 hello.i
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   680  3月 27 17:27 hello.s
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu  1642  3月 27 20:41 libhello.a
+</span></span><span class=line><span class=cl>-rwxrwxr-x  1 atguigu atguigu 16024  3月 28 14:30 main123*
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    67  3月 28 14:53 main.c
+</span></span><span class=line><span class=cl>-rwxrwxr-x  1 atguigu atguigu 15952  3月 27 20:40 main_d*
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   225  3月 27 15:18 main.i
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   589  3月 27 15:18 main.s
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   279  3月 28 14:52 Makefile
+</span></span><span class=line><span class=cl>drwxrwxr-x  2 atguigu atguigu  4096  3月 27 14:24 .vscode/
+</span></span><span class=line><span class=cl>linux_app/1_C/03_makefile$</span></span></code></pre></td></tr></table></div></div></div><p>② 删除Makefile中的.PHONY: clean，保存退出
+③ 重新执行make</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ make
+</span></span><span class=line><span class=cl>gcc -c hello.c
+</span></span><span class=line><span class=cl>gcc -c main.c
+</span></span><span class=line><span class=cl>gcc -o main hello.o main.o</span></span></code></pre></td></tr></table></div></div></div><p>④ 重新执行make clean</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ make clean
+</span></span><span class=line><span class=cl>make: “clean”已是最新。</span></span></code></pre></td></tr></table></div></div></div><p>我们发现，执行make clean并没有像我们预想的那样删除文件，而是告诉我们“clean”已是最新。这是因为，make将clean作为普通目标处理，它先检查clean的依赖（不存在），然后发现clean文件已存在且没有依赖更新（因为不存在，自然不需要更新），因此不会执行规则下的命令，并在控制台输出以上内容。显然，这不是我们期望的行为。<br>⑤ 在Makefile中添加.PHONY: clean将clean声明为伪目标，并保存退出<br>⑥ 重新执行make clean</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ make clean
+</span></span><span class=line><span class=cl>rm main hello.o main.o</span></span></code></pre></td></tr></table></div></div></div><p>可以看到，虽然目录下有名为clean的文件，但make仍执行了clean所在规则的命令。这是我们期望的行为。<br>⑦ 总结：将某些不生成目标文件的行为或动作（如清理、安装）声明为伪目标可以确保无条件执行规则下的命令。即便执行make命令时当前目录下存在与目标同名的文件，依然可以得到我们期望的效果。</p><h3 class="relative group">忽略错误<div id=忽略错误 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%bf%bd%e7%95%a5%e9%94%99%e8%af%af aria-label=锚点>#</a></span></h3><p>当一个目标下包含多条命令时，如果前面的命令执行失败了，后面的命令就不会执行。<br>如果需要后面的命令依然能执行，就需要忽略错误。<br>忽略错误的编码只需要在命令的左侧加上“-”。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>clean2:
+</span></span><span class=line><span class=cl>rm hello.o
+</span></span><span class=line><span class=cl>rm main.o
+</span></span><span class=line><span class=cl>rm main</span></span></code></pre></td></tr></table></div></div></div><p>如果hello.o不存在，执行clean2目标时，由于第一条命令执行失败，后面的2条命令就不会执行。<br>添加忽略错误配置，再执行clean2目标，可以看到后面的2条命令都执行了。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>clean2:
+</span></span><span class=line><span class=cl>-rm hello.o
+</span></span><span class=line><span class=cl>rm main.o
+</span></span><span class=line><span class=cl>rm main</span></span></code></pre></td></tr></table></div></div></div><h3 class="relative group">目标名和命令中输出文件名的关系<div id=目标名和命令中输出文件名的关系 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e7%9b%ae%e6%a0%87%e5%90%8d%e5%92%8c%e5%91%bd%e4%bb%a4%e4%b8%ad%e8%be%93%e5%87%ba%e6%96%87%e4%bb%b6%e5%90%8d%e7%9a%84%e5%85%b3%e7%b3%bb aria-label=锚点>#</a></span></h3><p>（1）修改Makefile</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl># 定义变量objects
+</span></span><span class=line><span class=cl>objects :=  hello.o main.o
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 在目标中引入变量
+</span></span><span class=line><span class=cl>main: $(objects)
+</span></span><span class=line><span class=cl>    gcc $(objects) -o main123</span></span></code></pre></td></tr></table></div></div></div><p>将命令中最终输出的文件名由main更改为main123。<br>保存退出。</p><p>（2）执行make<br>上一步已经删除了目录下的main.o，hello.o和main。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ make 
+</span></span><span class=line><span class=cl>gcc -c hello.c
+</span></span><span class=line><span class=cl>gcc -c main.c
+</span></span><span class=line><span class=cl>gcc -o main123 hello.o main.o</span></span></code></pre></td></tr></table></div></div></div><p>（3）可以看到make的日志中，最终生成的文件为main123，查看当前目录</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ ll
+</span></span><span class=line><span class=cl>总计 104
+</span></span><span class=line><span class=cl>drwxrwxr-x  3 atguigu atguigu  4096  3月 28 15:49 ./
+</span></span><span class=line><span class=cl>drwxr-x--- 23 atguigu atguigu  4096  3月 28 15:49 ../
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu     0  3月 28 15:24 clean
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    92  3月 28 14:45 hello.c
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    69  3月 28 14:45 hello.h
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu 18009  3月 27 17:27 hello.i
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu  1496  3月 28 15:49 hello.o
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   680  3月 27 17:27 hello.s
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu  1642  3月 27 20:41 libhello.a
+</span></span><span class=line><span class=cl>-rwxrwxr-x  1 atguigu atguigu 16024  3月 28 15:49 main123*
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu    67  3月 28 14:53 main.c
+</span></span><span class=line><span class=cl>-rwxrwxr-x  1 atguigu atguigu 15952  3月 27 20:40 main_d*
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   225  3月 27 15:18 main.i
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu  1360  3月 28 15:49 main.o
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   589  3月 27 15:18 main.s
+</span></span><span class=line><span class=cl>-rw-rw-r--  1 atguigu atguigu   316  3月 28 15:49 Makefile
+</span></span><span class=line><span class=cl>drwxrwxr-x  2 atguigu atguigu  4096  3月 27 14:24 .vscode/</span></span></code></pre></td></tr></table></div></div></div><p>（4）分析<br>当前目录下不存在名为main的文件，只有名为mian123的文件，可以得出结论：规则中的命令决定了生成目标文件的名称。目标名并不影响目标文件名。</p><p>（5）再次执行make</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>linux_app/1_C/03_makefile$ make
+</span></span><span class=line><span class=cl>gcc -o main123 hello.o main.o</span></span></code></pre></td></tr></table></div></div></div><p>我们发现，make没有提示目标文件已是最新，而是重新执行了gcc -o main123 hello.o main.o。这是因为，make会按照目标名称在当前目录下追踪目标文件，如果不存在与目标同名的文件，会再次执行规则下的命令。</p><p>（6）总结<br>make输出的文件名取决于规则下的命令，而目标名称决定make追踪的目标文件名。如果二者不一致，make就会认为目标文件不存在而不断执行命令。我们应确保命令生成的目标文件名和目标名一致。</p><h1 class="relative group">文件I/O<div id=文件io class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e6%96%87%e4%bb%b6io aria-label=锚点>#</a></span></h1><p>我们在linux_app下新建目录2_IO，本章的所有例程全部放到该目录下。</p><h2 class="relative group">标准I/O库函数<div id=标准io库函数 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e6%a0%87%e5%87%86io%e5%ba%93%e5%87%bd%e6%95%b0 aria-label=锚点>#</a></span></h2><h3 class="relative group">打开/关闭文件<div id=打开关闭文件 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e6%89%93%e5%bc%80%e5%85%b3%e9%97%ad%e6%96%87%e4%bb%b6 aria-label=锚点>#</a></span></h3><p>fopen<br>新建01_fopen.c，写入以下内容。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>#include &lt;stdio.h&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>int main(int argc, char const *argv[])
+</span></span><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>/**
+</span></span><span class=line><span class=cl> * 作用：打开文件
+</span></span><span class=line><span class=cl> * 参数1： 文件路径 字符串
+</span></span><span class=line><span class=cl> * 参数2：打开文件的模式 字符串
+</span></span><span class=line><span class=cl> *  r 读模式  文件不存在失败
+</span></span><span class=line><span class=cl> *  w 覆盖写模式 文件不存在自动创建
+</span></span><span class=line><span class=cl> *  a 追加写模式 文件不存在自动创建
+</span></span><span class=line><span class=cl> *  r+ 可读 + 可写，从头开始写一个字符替换一个
+</span></span><span class=line><span class=cl> *  w+ 覆盖写 + 可读
+</span></span><span class=line><span class=cl> *  a+ 追加写 + 可读
+</span></span><span class=line><span class=cl> * 返回值
+</span></span><span class=line><span class=cl> *  成功：FILE * 指向结构体FILE的指针
+</span></span><span class=line><span class=cl> *  失败：NULL
+</span></span><span class=line><span class=cl> * FILE *fopen (const char *__restrict __filename, const char *__restrict __modes)
+</span></span><span class=line><span class=cl>*/
+</span></span><span class=line><span class=cl>    FILE *file = fopen(&#34;io.txt&#34;, &#34;a+&#34;);
+</span></span><span class=line><span class=cl>    if (file == NULL)
+</span></span><span class=line><span class=cl>    {
+</span></span><span class=line><span class=cl>        printf(&#34;打开文件失败\n&#34;);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>    else 
+</span></span><span class=line><span class=cl>    {
+</span></span><span class=line><span class=cl>        printf(&#34;打开文件成功 (%p)\n&#34;, file);
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    return 0;
+</span></span><span class=line><span class=cl>}</span></span></code></pre></td></tr></table></div></div></div><p>（2）新建Makefile，写入以下内容</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>CC:=gcc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>fopen: 01_fopen.c
+</span></span><span class=line><span class=cl>  -$(CC) $^ -o $@
+</span></span><span class=line><span class=cl>  -./$@
+</span></span><span class=line><span class=cl>  -rm $@</span></span></code></pre></td></tr></table></div></div></div><p>说明：<br>① 有时编译器不只是gcc，我们将编译器定义为变量CC，当切换编译器时只需要更改该变量的定义，而无须更改整个Makefile。<br>② $^相当于当前target所有依赖文件列表，此处为fopen_test.c<br>③ $@相当于当前target目标文件的名称，此处为fopen_test。<br>④ ./$@的作用是执行目标文件<br>⑤ rm $@的作用是在执行完毕后删除目标文件，如果没有这个操作，当源文件fopen_test.c未更改时就无法重复执行，会提示： make：“fopen_test”已是最新。此处删除目标文件，使得我们在不更改源文件的情况下可以多次执行。<br>⑥ 所有命令前都添加了“-”符号以忽略错误，确保即便上面的命令执行失败，仍然会向下执行。这样做是为了在发生错误时，确保删除目标文件，使得再次执行相同target时不会提示：make：“fopen_test”已是最新，可以重新执行target下的命令。</p><p>fclose<br>（1）创建02_fclose.c文件，写入以下内容。</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>#include &lt;stdio.h&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>int main(int argc, char const *argv[])
+</span></span><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>    // 打开文件
+</span></span><span class=line><span class=cl>    FILE *file = fopen(&#34;io.txt&#34;, &#34;a+&#34;);
+</span></span><span class=line><span class=cl>    if (file == NULL)
+</span></span><span class=line><span class=cl>    {
+</span></span><span class=line><span class=cl>        printf(&#34;打开文件失败\n&#34;);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>    else 
+</span></span><span class=line><span class=cl>    {
+</span></span><span class=line><span class=cl>        printf(&#34;打开文件成功 (%p)\n&#34;, file);
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/**
+</span></span><span class=line><span class=cl> * 作用：关闭文件流
+</span></span><span class=line><span class=cl> * 参数：被关闭的文件流 前面打开的文件流
+</span></span><span class=line><span class=cl> * 返回值：成功：为0,失败：为-1（EOF）通常失败会造成系统崩溃
+</span></span><span class=line><span class=cl> *
+</span></span><span class=line><span class=cl> * int fclose (FILE *__stream);
+</span></span><span class=line><span class=cl>*/
+</span></span><span class=line><span class=cl>    // 关闭文件
+</span></span><span class=line><span class=cl>    // fclose(file);
+</span></span><span class=line><span class=cl>    int result = fclose(file);
+</span></span><span class=line><span class=cl>    if (result != 0)
+</span></span><span class=line><span class=cl>    {
+</span></span><span class=line><span class=cl>        printf(&#34;关闭文件失败 \n&#34;);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>    else
+</span></span><span class=line><span class=cl>    {
+</span></span><span class=line><span class=cl>        printf(&#34;关闭文件成功 \n&#34;);
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    return 0;
+</span></span><span class=line><span class=cl>}</span></span></code></pre></td></tr></table></div></div></div><p>Makefile中补充以下内容</p><div class=highlight-wrapper><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>fclose: 02_fclose.c
+</span></span><span class=line><span class=cl>  -$(CC) $^ -o $@
+</span></span><span class=line><span class=cl>  -./$@
+</span></span><span class=line><span class=cl>  -rm $@</span></span></code></pre></td></tr></table></div></div></div><h3 class="relative group">向文件中写入数据<div id=向文件中写入数据 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%90%91%e6%96%87%e4%bb%b6%e4%b8%ad%e5%86%99%e5%85%a5%e6%95%b0%e6%8d%ae aria-label=锚点>#</a></span></h3></div></div></section><footer class="pt-8 max-w-prose print:hidden"><div class=pt-8><hr class="border-dotted border-neutral-300 dark:border-neutral-600"><div class="flex justify-between pt-3"><span class="flex flex-col"><a class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" href=/posts/imag-online/><span class=leading-6><span class="inline-block rtl:rotate-180">&larr;</span>&ensp;我的图床上线了
+</span></a><span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400"><time datetime=2025-01-01T00:00:00+00:00>January 1, 2025</time>
+</span></span><span class="flex flex-col items-end"><a class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" href=/posts/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%9F%BA%E7%A1%80/><span class=leading-6>嵌入式基础&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+</span></a><span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400"><time datetime=2025-01-17T00:00:00+00:00>January 17, 2025</time></span></span></div></div></footer></article><div id=scroll-to-top class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200"><a href=#the-top class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400" aria-label=返回顶部 title=返回顶部>&uarr;</a></div></main><footer id=site-footer class="py-10 print:hidden"><nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400"><ul class="flex list-none flex-col sm:flex-row"><li class="flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=http://baidu.com title>百度一下</a></li><li class="flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=https://b23.tv/PhZdzry title>我的B站</a></li><li class="flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=https://image.kaikun.top title>我的图床</a></li><li class="flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=https://easy.kaikun.top title>我的AI</a></li></ul></nav><div class="flex items-center justify-between"><p class="text-sm text-neutral-500 dark:text-neutral-400">&copy;
+2026
+mkk</p><p class="text-xs text-neutral-500 dark:text-neutral-400">由 <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href=https://blowfish.page/ target=_blank rel="noopener noreferrer">Blowfish</a> 强力驱动</p></div><script>mediumZoom(document.querySelectorAll("img:not(.nozoom)"),{margin:24,background:"rgba(0,0,0,0.5)",scrollOffset:0})</script></footer><div id=search-wrapper class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500" data-url=https://kaikun.top/><div id=search-modal class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"><header class="relative z-10 flex items-center justify-between flex-none px-2"><form class="flex items-center flex-auto min-w-0"><div class="flex items-center justify-center w-8 h-8 text-neutral-400"><span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span></div><input type=search id=search-query class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent" placeholder=搜索 tabindex=0></form><button id=close-search-button class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" title="关闭 (Esc)">
+<span class="relative block icon"><svg viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg></span></button></header><section class="flex-auto px-2 overflow-auto"><ul id=search-results></ul></section></div></div></div></body></html>

@@ -1,0 +1,36 @@
+# 主导航
+[[main]]
+  name = "首页"
+  pageRef = "/"
+  weight = 10
+
+[[main]]
+  name = "文章"
+  pageRef = "/posts"
+  weight = 20
+
+[[main]]
+  name = "关于"
+  pageRef = "/about"
+  weight = 30
+
+# 底部链接（友情链接）
+[[footer]]
+  name = "百度一下"
+  url = "http://baidu.com"
+  weight = 10
+
+[[footer]]
+  name = "我的B站"
+  url = "https://b23.tv/PhZdzry"
+  weight = 20
+
+[[footer]]
+  name = "我的图床"
+  url = "https://image.kaikun.top"
+  weight = 30
+
+[[footer]]
+  name = "我的AI"
+  url = "https://easy.kaikun.top"
+  weight = 40

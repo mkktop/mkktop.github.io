@@ -1,0 +1,13 @@
+languageCode = "zh-cn"
+languageName = "中文"
+weight = 1
+title = "mkk Blog"
+
+[params.author]
+  name = "mkk"
+  image = "https://kaikun.top/img/logoko.png"
+  headline = "要做一个有温度的程序员"
+  bio = "嵌入式开发"
+  links = [
+    { github = "https://github.com/mkktop" },
+  ]

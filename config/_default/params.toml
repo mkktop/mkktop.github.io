@@ -1,0 +1,63 @@
+colorScheme = "cyberpunk"
+defaultAppearance = "dark"
+autoSwitchAppearance = false
+
+enableSearch = true
+enableCodeCopy = true
+
+[header]
+  layout = "fixed-fill-blur"
+
+[footer]
+  showCopyright = true
+  showThemeAttribution = true
+  showAppearanceSwitcher = true
+  showScrollToTop = true
+
+  layout = "profile"
+  homepageImage = "img/home-bg.jpg"
+  showRecent = true
+  showRecentItems = 10
+  showMoreLink = false
+  showReadingTime = true
+  cardViewScreenWidth = true
+
+[article]
+  showDate = true
+  showViews = false
+  showLikes = false
+  showDateUpdated = false
+  showAuthor = true
+  showHero = true
+  heroStyle = "thumbAndBackground"
+  showBreadcrumbs = true
+  showDraftLabel = true
+  showEdit = false
+  showSummary = true
+  showPagination = true
+  invertPagination = false
+  showReadingTime = true
+  showTableOfContents = true
+  showTaxonomies = true
+  showWordCount = true
+  showComments = false
+
+[list]
+  showHero = true
+  heroStyle = "thumbAndBackground"
+  showBreadcrumbs = false
+  showSummary = true
+  showTableOfContents = false
+  showCards = true
+  groupByYear = true
+  cardView = true
+  cardViewScreenWidth = true
+
+[sitemap]
+  excludedKinds = []
+
+[taxonomy]
+  showTermCount = true
+
+[verification]
+  google = ""

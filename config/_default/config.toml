@@ -1,0 +1,8 @@
+baseURL = "https://kaikun.top/"
+defaultContentLanguage = "zh-cn"
+enableRobotsTXT = true
+paginate = 10
+summaryLength = 30
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
