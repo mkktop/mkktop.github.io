@@ -33,8 +33,7 @@ tags:
 最后祝大家身体健康万事如意
 
 ## 感谢
-感谢github pages
-感谢[黄玄](https://github.com/Huxpro/huxpro.github.io)
+感谢 GitHub Pages
 
 **凡王之血，必以剑终**
 
