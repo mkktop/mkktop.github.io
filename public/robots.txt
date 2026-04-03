@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://kaikun.top/sitemap.xml
