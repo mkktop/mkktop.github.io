@@ -7,6 +7,12 @@ body.max-w-7xl {
   max-width: 1400px !important;
 }
 
+/* 导航栏也放宽 */
+#menu-blur + div,
+.fixed .max-w-7xl {
+  max-width: 1400px !important;
+}
+
 /* 文章页：取消 header/内容/footer 的 prose 宽度限制 */
 #single_header,
 .article-content,
@@ -72,4 +78,32 @@ article footer.pt-8 {
 /* 选中文字 */
 ::selection {
   background: rgba(139, 92, 246, 0.25);
+}
+
+/* 页脚居中美化 */
+footer {
+  text-align: center !important;
+}
+
+footer .flex {
+  justify-content: center !important;
+}
+
+footer a {
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--color-primary-400) !important;
+}
+
+/* 文章底部上下篇间距 */
+footer.pt-8.print\:hidden {
+  padding-top: 3rem !important;
+  margin-top: 2rem !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.15) !important;
+}
+
+footer.pt-8.print\:hidden .flex {
+  gap: 1rem;
 }

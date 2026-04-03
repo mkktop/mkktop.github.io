@@ -19,7 +19,7 @@ enableCodeCopy = true
   homepageImage = "img/home-bg.jpg"
   showRecent = true
   showRecentItems = 8
-  showMoreLink = true
+  showMoreLink = false
   showReadingTime = true
   cardViewScreenWidth = false
 

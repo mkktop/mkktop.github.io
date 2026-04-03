@@ -1,0 +1,20 @@
+<div class="flex justify-center mt-4">
+  <p class="text-sm text-neutral-500 dark:text-neutral-400" id="site-runtime"></p>
+</div>
+<script>
+  (function () {
+    var startDate = new Date("2025-04-01T00:00:00");
+    function update() {
+      var now = new Date();
+      var diff = now - startDate;
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById("site-runtime").textContent =
+        "本站已运行 " + days + " 天 " + hours + " 小时 " + minutes + " 分 " + seconds + " 秒";
+    }
+    update();
+    setInterval(update, 1000);
+  })();
+</script>
