@@ -1,7 +1,7 @@
 baseURL = "https://kaikun.top/"
 defaultContentLanguage = "zh-cn"
 enableRobotsTXT = true
-paginate = 10
+paginate = 15
 summaryLength = 30
 
 [outputs]

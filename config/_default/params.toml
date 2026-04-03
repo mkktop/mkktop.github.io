@@ -1,4 +1,4 @@
-colorScheme = "cyberpunk"
+colorScheme = "blowfish"
 defaultAppearance = "dark"
 autoSwitchAppearance = false
 
@@ -10,17 +10,18 @@ enableCodeCopy = true
 
 [footer]
   showCopyright = true
-  showThemeAttribution = true
+  showThemeAttribution = false
   showAppearanceSwitcher = true
   showScrollToTop = true
 
-  layout = "profile"
+[homepage]
+  layout = "background"
   homepageImage = "img/home-bg.jpg"
   showRecent = true
-  showRecentItems = 10
-  showMoreLink = false
+  showRecentItems = 8
+  showMoreLink = true
   showReadingTime = true
-  cardViewScreenWidth = true
+  cardViewScreenWidth = false
 
 [article]
   showDate = true
@@ -28,9 +29,8 @@ enableCodeCopy = true
   showLikes = false
   showDateUpdated = false
   showAuthor = true
-  showHero = true
-  heroStyle = "thumbAndBackground"
-  showBreadcrumbs = true
+  showHero = false
+  showBreadcrumbs = false
   showDraftLabel = true
   showEdit = false
   showSummary = true
@@ -39,7 +39,7 @@ enableCodeCopy = true
   showReadingTime = true
   showTableOfContents = true
   showTaxonomies = true
-  showWordCount = true
+  showWordCount = false
   showComments = false
 
 [list]
