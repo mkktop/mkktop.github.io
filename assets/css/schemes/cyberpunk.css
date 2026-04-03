@@ -1,17 +1,17 @@
-/* Cyberpunk Dark Tech - 深色科技风配色 */
+/* Cyberpunk Dark Tech — 深色但不刺眼 */
 :root {
   --color-neutral: 255, 255, 255;
-  /* 深蓝灰中性色 */
-  --color-neutral-50: 248, 250, 252;
-  --color-neutral-100: 241, 245, 249;
-  --color-neutral-200: 226, 232, 240;
-  --color-neutral-300: 203, 213, 225;
-  --color-neutral-400: 148, 163, 184;
-  --color-neutral-500: 100, 116, 139;
-  --color-neutral-600: 71, 85, 105;
-  --color-neutral-700: 51, 65, 85;
-  --color-neutral-800: 30, 41, 59;
-  --color-neutral-900: 15, 23, 42;
+  /* 中性色 — 背景用中深灰而非纯黑 */
+  --color-neutral-50: 255, 255, 255;
+  --color-neutral-100: 245, 245, 245;
+  --color-neutral-200: 230, 230, 230;
+  --color-neutral-300: 210, 210, 215;
+  --color-neutral-400: 170, 175, 185;
+  --color-neutral-500: 110, 115, 130;
+  --color-neutral-600: 75, 80, 95;
+  --color-neutral-700: 50, 55, 68;
+  --color-neutral-800: 35, 40, 52;
+  --color-neutral-900: 24, 28, 38;
   /* 主色：霓虹青 */
   --color-primary-50: 236, 254, 255;
   --color-primary-100: 207, 250, 254;

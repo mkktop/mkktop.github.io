@@ -6,8 +6,9 @@ title = "mkk Blog"
 [params.author]
   name = "mkk"
   image = "https://kaikun.top/img/logoko.png"
-  headline = "要做一个有温度的程序员"
-  bio = "嵌入式开发"
+  headline = "嵌入式开发工程师"
+  bio = "嵌入式 | FreeRTOS | Linux | Python"
   links = [
     { github = "https://github.com/mkktop" },
+    { email = "mailto:2864078813@qq.com" },
   ]

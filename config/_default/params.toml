@@ -43,15 +43,15 @@ enableCodeCopy = true
   showComments = false
 
 [list]
-  showHero = true
-  heroStyle = "thumbAndBackground"
+  showHero = false
   showBreadcrumbs = false
   showSummary = true
   showTableOfContents = false
   showCards = true
-  groupByYear = true
-  cardView = true
-  cardViewScreenWidth = true
+  groupByYear = false
+  cardView = false
+  cardViewScreenWidth = false
+  layoutBackgroundBlur = false
 
 [sitemap]
   excludedKinds = []
