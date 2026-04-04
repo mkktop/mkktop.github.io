@@ -1,88 +1,207 @@
 /* ============================================
-   最小化自定义 — 只微调，不覆盖主题
+   精致博客设计 — 视觉优化
    ============================================ */
 
-/* 放宽整体最大宽度（原 max-w-7xl 约 1280px） */
+/* 整体容器最大宽度 */
 body.max-w-7xl {
-  max-width: 1400px !important;
+  max-width: 1200px !important;
 }
 
-/* 导航栏也放宽 */
+/* 导航栏 */
 #menu-blur + div,
 .fixed .max-w-7xl {
-  max-width: 1400px !important;
+  max-width: 1200px !important;
 }
 
-/* 文章页：取消 header/内容/footer 的 prose 宽度限制 */
+/* 文章页布局 */
 #single_header,
-.article-content,
 article footer.pt-8 {
   max-width: 100% !important;
+}
+
+/* 文章正文 - 舒适阅读宽度 */
+.article-content {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
 }
 
 /* 文章正文排版 */
 .prose {
   max-width: 100% !important;
-  line-height: 1.8;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+
+.prose h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5em;
 }
 
 .prose h2 {
-  margin-top: 2.5em;
+  margin-top: 3em;
   margin-bottom: 1em;
-  padding-bottom: 0.5em;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .prose h3 {
-  margin-top: 2em;
+  margin-top: 2.2em;
   margin-bottom: 0.8em;
+  font-size: 1.35rem;
+  font-weight: 600;
 }
 
-/* 代码块圆角 */
+.prose h4 {
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+  font-weight: 600;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+}
+
+/* 代码块 - 现代风格 */
 .prose pre {
-  border-radius: 12px;
-  padding: 1.2em 1.4em;
+  border-radius: 16px;
+  padding: 1.5em 1.6em;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  overflow-x: auto;
 }
 
-/* 引用块 */
+.prose code {
+  font-size: 0.9em;
+}
+
+.prose :not(pre) > code {
+  background: rgba(139, 92, 246, 0.12);
+  padding: 0.2em 0.5em;
+  border-radius: 6px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* 引用块 - 优雅设计 */
 .prose blockquote {
-  border-left: 3px solid rgba(139, 92, 246, 0.4);
-  background: rgba(139, 92, 246, 0.04);
-  border-radius: 0 10px 10px 0;
-  padding: 1em 1.3em;
+  border-left: 4px solid rgba(139, 92, 246, 0.6);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.03) 100%);
+  border-radius: 0 16px 16px 0;
+  padding: 1.4em 1.6em;
+  margin: 2em 0;
+  position: relative;
 }
 
-/* 图片圆角 */
+.prose blockquote::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(139, 92, 246, 0.15);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.prose blockquote p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-style: italic;
+}
+
+/* 图片 - 精致效果 */
 .prose img {
-  border-radius: 10px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* 搜索结果统一高度 */
+.prose img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* 链接样式 */
+.prose a {
+  color: var(--color-primary-500);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.prose a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-400));
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.prose a:hover::after {
+  width: 100%;
+}
+
+/* 列表优化 */
+.prose ul,
+.prose ol {
+  margin: 1.5em 0;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin: 0.6em 0;
+  padding-left: 0.3em;
+}
+
+.prose li::marker {
+  color: var(--color-primary-500);
+  font-weight: 600;
+}
+
+/* 搜索结果 */
 #search-results a {
-  min-height: 52px;
+  min-height: 56px;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+#search-results a:hover {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.2);
+  transform: translateX(4px);
 }
 
 #search-results .text-lg {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* 隐藏搜索结果摘要 */
-#search-results .text-sm {
-  display: none;
+  font-weight: 500;
 }
 
 /* 选中文字 */
 ::selection {
-  background: rgba(139, 92, 246, 0.25);
+  background: rgba(139, 92, 246, 0.35);
+  color: inherit;
 }
 
-/* 页脚居中美化 */
+/* 页脚美化 */
 footer {
   text-align: center !important;
+  padding-top: 3rem !important;
+  padding-bottom: 2rem !important;
 }
 
 footer .flex {
@@ -90,20 +209,202 @@ footer .flex {
 }
 
 footer a {
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
 }
 
 footer a:hover {
   color: var(--color-primary-400) !important;
 }
 
-/* 文章底部上下篇间距 */
+footer a:hover::after {
+  width: 100%;
+}
+
+/* 文章底部上下篇 */
 footer.pt-8.print\:hidden {
-  padding-top: 3rem !important;
-  margin-top: 2rem !important;
+  padding-top: 4rem !important;
+  margin-top: 3rem !important;
   border-top: 1px solid rgba(148, 163, 184, 0.15) !important;
+  max-width: 720px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 footer.pt-8.print\:hidden .flex {
-  gap: 1rem;
+  gap: 1.5rem;
+}
+
+footer.pt-8.print\:hidden a {
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(148, 163, 184, 0.05);
+}
+
+footer.pt-8.print\:hidden a:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.15);
+}
+
+/* 表格样式 */
+.prose table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.prose th {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 100%);
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+}
+
+.prose td {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tbody tr {
+  transition: background 0.2s ease;
+}
+
+.prose tbody tr:hover {
+  background: rgba(139, 92, 246, 0.04);
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.6);
+}
+
+/* 文章卡片 */
+article:not(.prose) {
+  border-radius: 16px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+article:not(.prose):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 按钮样式 */
+button,
+.btn {
+  transition: all 0.3s ease;
+}
+
+/* 文章标题头 */
+#single_header {
+  text-align: center;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+/* 目录样式优化 */
+#TableOfContents {
+  background: rgba(139, 92, 246, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin: 2rem 0;
+}
+
+#TableOfContents ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#TableOfContents li {
+  margin: 0.5rem 0;
+}
+
+#TableOfContents a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+}
+
+#TableOfContents a:hover {
+  color: var(--color-primary-500);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* 回到顶部按钮 */
+#scroll-to-top {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+}
+
+#scroll-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+}
+
+/* 页面加载入场动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main {
+  animation: fadeInUp 0.6s ease;
 }
