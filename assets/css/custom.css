@@ -4,13 +4,15 @@
 
 /* 整体容器最大宽度 */
 body.max-w-7xl {
-  max-width: 1200px !important;
+  max-width: 90vw !important;
+  max-width: clamp(1200px, 90vw, 1600px) !important;
 }
 
 /* 导航栏 */
 #menu-blur + div,
 .fixed .max-w-7xl {
-  max-width: 1200px !important;
+  max-width: 90vw !important;
+  max-width: clamp(1200px, 90vw, 1600px) !important;
 }
 
 /* 文章页布局 */
@@ -19,11 +21,30 @@ article footer.pt-8 {
   max-width: 100% !important;
 }
 
-/* 文章正文 - 舒适阅读宽度 */
+/* 文章正文 - 自适应阅读宽度 */
 .article-content {
   max-width: 720px !important;
   margin: 0 auto !important;
   padding: 0 1rem !important;
+}
+
+/* 媒体查询 - 大屏幕自适应 */
+@media (min-width: 1200px) {
+  .article-content {
+    max-width: 800px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .article-content {
+    max-width: 900px !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .article-content {
+    max-width: 1000px !important;
+  }
 }
 
 /* 文章正文排版 */
