@@ -10,9 +10,14 @@
   weight = 20
 
 [[main]]
+  name = "资源"
+  pageRef = "/resources"
+  weight = 30
+
+[[main]]
   name = "关于"
   pageRef = "/about"
-  weight = 30
+  weight = 40
 
 # 底部链接（友情链接）
 [[footer]]
@@ -22,15 +27,10 @@
 
 [[footer]]
   name = "我的B站"
-  url = "https://b23.tv/PhZdzry"
+  url = "https://space.bilibili.com/629233897?spm_id_from=333.1007.0.0"
   weight = 20
 
 [[footer]]
   name = "我的图床"
   url = "https://image.kaikun.top"
   weight = 30
-
-[[footer]]
-  name = "我的AI"
-  url = "https://easy.kaikun.top"
-  weight = 40
